@@ -1,0 +1,11 @@
+DOMAIN_NAME=fpalumbo.42.fr
+CERT_=./requirements/tools/mlecherb.42.fr.crt
+KEY_=./requirements/tools/mlecherb.42.fr.key
+DB_NAME=wordpress
+DB_ROOT=rootpass
+DB_USER=wpuser
+DB_PASS=wppass
+TITLE=Inception
+ADMIN_USER=fpalumbo
+ADMIN_PASSWORD=password
+ADMIN_EMAIL=math.lecherbonnier@gmail.com
