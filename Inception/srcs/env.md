@@ -1,11 +1,19 @@
 DOMAIN_NAME=fpalumbo.42.fr
-CERT_=./requirements/tools/mlecherb.42.fr.crt
-KEY_=./requirements/tools/mlecherb.42.fr.key
-DB_NAME=wordpress
-DB_ROOT=rootpass
-DB_USER=wpuser
-DB_PASS=wppass
-TITLE=Inception
-ADMIN_USER=fpalumbo
-ADMIN_PASSWORD=password
-ADMIN_EMAIL=math.lecherbonnier@gmail.com
+
+#sql configuration
+SQL_DATABASE=inception
+SQL_USER=inception_user
+SQL_PASSWORD=inception_pass
+SQL_ROOT_PASSWORD=rootpass
+
+#wordpress configuration
+SITE_TITLE=inception
+ADMIN_USER=king
+ADMIN_PASSWORD=kingpass
+ADMIN_EMAIL=king@gmail.com
+
+
+#other client
+USER1_LOGIN=marc
+USER1_PASS=marcpass
+USER1_MAIL=marc@gmail.com

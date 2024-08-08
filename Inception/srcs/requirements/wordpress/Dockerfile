@@ -17,24 +17,19 @@ RUN wget https://fr.wordpress.org/wordpress-6.0-fr_FR.tar.gz -P /var/www && \
 # Copier la configuration PHP
 COPY ./conf/php.conf /etc/php/7.3/fpm/pool.d/www.conf
 
-# Variables d'environnement pour la base de données
-ENV DB_NAME=wordpress
-ENV DB_ROOT=rootpass
-ENV DB_USER=wpuser
-
-# Installer WP-CLI
-
 # Copier le script de configuration automatique
-COPY conf/auto_config.sh /auto_config.sh
-RUN chmod +x /auto_config.sh
+COPY conf/auto_config.sh /usr/local/bin/auto_config.sh
+RUN chmod +x /usr/local/bin/auto_config.sh
 
-RUN sh /auto_config.sh
 # Créer et définir les permissions pour le fichier de debug
 RUN touch /var/www/wordpress/debug.log && \
     chmod 666 /var/www/wordpress/debug.log
 
 # Créer le répertoire /run/php
 RUN mkdir -p /run/php
+
+# Définir l'entrypoint pour exécuter le script d'auto-configuration
+ENTRYPOINT ["sh" , "/usr/local/bin/auto_config.sh"]
 
 # Démarrer PHP-FPM
 CMD ["/usr/sbin/php-fpm7.3", "-F"]

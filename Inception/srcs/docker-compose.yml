@@ -58,13 +58,13 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/home/fpalumbo/data/wordpress'
+      device: '/Users/fabio/data/srcs_wordpress'
   mariadb:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/home/fpalumbo/data/mariadb'
+      device: '/Users/fabio/data/srcs_mariadb'
 
 
 
