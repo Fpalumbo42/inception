@@ -5,6 +5,8 @@
 : "${SQL_USER:?Variable not set or empty}"
 : "${SQL_PASSWORD:?Variable not set or empty}"
 
+if [ ! -e /var/www/wordpress/wp-config.php ]; then
+
 # Créer ou écraser le fichier wp-config.php avec le contenu fourni
 cat << EOF > /var/www/wordpress/wp-config.php
 <?php
@@ -35,6 +37,11 @@ define( 'WP_REDIS_READ_TIMEOUT', 1 );
 define( 'WP_REDIS_DATABASE', 0 );
 require_once ABSPATH . 'wp-settings.php';
 EOF
+
+fi
+
+wp core install     --url=$DOMAIN_NAME --title=$SITE_TITLE --admin_user=$ADMIN_USER --admin_password=$ADMIN_PASSWORD --admin_email=$ADMIN_EMAIL --allow-root --path='/var/www/wordpress'
+
 
 # Vérifier si le fichier a été créé correctement
 if [ -f /var/www/wordpress/wp-config.php ]; then
