@@ -1,16 +1,18 @@
 PATH_DOCKER_COMPOSE = ./srcs/docker-compose.yml
-PATH_WORDPRESS = /Users/fabio/data/srcs_wordpress
-PATH_MARIADB = /Users/fabio/data/srcs_mariadb
+PATH_WORDPRESS = /home/fpalumbo/data/srcs_wordpress
+PATH_MARIADB = /home/fpalumbo/data/srcs_mariadb
 
 all:
 	mkdir -p $(PATH_WORDPRESS)
 	mkdir -p $(PATH_MARIADB)
 	@sudo docker-compose -f $(PATH_DOCKER_COMPOSE) up -d --build
 
-clean:
+stop:
 	@sudo docker-compose -f $(PATH_DOCKER_COMPOSE) down
 
-fclean: clean
+clean: stop
 	@sudo rm -rf $(PATH_WORDPRESS)
 	@sudo rm -rf $(PATH_MARIADB)
+
+fclean: stop clean
 	@sudo docker system prune -af

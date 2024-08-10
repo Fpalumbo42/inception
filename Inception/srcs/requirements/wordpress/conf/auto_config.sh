@@ -1,13 +1,13 @@
 #!/bin/sh
 
-# Vérifier que toutes les variables nécessaires sont définies
+sleep 10
+
 : "${SQL_DATABASE:?Variable not set or empty}"
 : "${SQL_USER:?Variable not set or empty}"
 : "${SQL_PASSWORD:?Variable not set or empty}"
 
 if [ ! -e /var/www/wordpress/wp-config.php ]; then
 
-# Créer ou écraser le fichier wp-config.php avec le contenu fourni
 cat << EOF > /var/www/wordpress/wp-config.php
 <?php
 define( 'DB_NAME', '${SQL_DATABASE}' );
@@ -38,12 +38,12 @@ define( 'WP_REDIS_DATABASE', 0 );
 require_once ABSPATH . 'wp-settings.php';
 EOF
 
+sleep 2
+wp core install     --url=$DOMAIN_NAME --title=$SITE_TITLE --admin_user=$ADMIN_USER --admin_password=$ADMIN_PASSWORD --admin_email=$ADMIN_EMAIL --allow-root --path='/var/www/wordpress'
+wp user create      --allow-root --role=author $USER1_LOGIN $USER1_MAIL --user_pass=$USER1_PASS --path='/var/www/wordpress' >> /log.txt
+
 fi
 
-wp core install     --url=$DOMAIN_NAME --title=$SITE_TITLE --admin_user=$ADMIN_USER --admin_password=$ADMIN_PASSWORD --admin_email=$ADMIN_EMAIL --allow-root --path='/var/www/wordpress'
-
-
-# Vérifier si le fichier a été créé correctement
 if [ -f /var/www/wordpress/wp-config.php ]; then
     echo "wp-config.php has been created or overwritten successfully."
 else
@@ -51,5 +51,4 @@ else
     exit 1
 fi
 
-# Exécuter le processus principal du conteneur
 exec "$@"

@@ -1,4 +1,11 @@
-#rm  ~/.docker/config.json ©
+#rm  ~/.docker/config.json
+#curl -v --tlsv1.3 https://fpalumbo.42.fr
+
+#docker exec -it mariadb bash
+#mysql -u root -p
+#SHOW DATABASES;
+#USE nom_de_votre_base_de_donnees;
+#SHOW TABLES;
 
 DOMAIN_NAME=fpalumbo.42.fr
 
@@ -9,13 +16,13 @@ SQL_PASSWORD=inception_pass
 SQL_ROOT_PASSWORD=rootpass
 
 #wordpress configuration
-SITE_TITLE=inception
-ADMIN_USER=king
-ADMIN_PASSWORD=kingpass
-ADMIN_EMAIL=king@gmail.com
+SITE_TITLE=Inception
+ADMIN_USER=fabio
+ADMIN_PASSWORD=fabio
+ADMIN_EMAIL=fabio@gmail.com
 
 
 #other client
-USER1_LOGIN=marc
-USER1_PASS=marcpass
-USER1_MAIL=marc@gmail.com
+USER1_LOGIN=oui
+USER1_PASS=oui
+USER1_MAIL=oui@gmail.com
